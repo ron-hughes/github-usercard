@@ -101,13 +101,20 @@ let cards = document.querySelector('.cards')
 // console.log(axios.get('https://dog.ceo/api/breed/husky/images/random/12'))
 
 axios.get('https://api.github.com/users/ron-hughes')
-// .then((response) => {
-//   let data = response.data;
-//   console.log(data)
-//   data.forEach(element => {
-//   let myFunc = MyFunction(element);
-//   cards.appendChild(myFunc)  
-//   });
-// }
+.then((response) => {
+  let data = response.data;
+  Object.values(data).forEach(e => {
+    // console.log(e)
+  })
+  // let gitData = MyFunction(data);
+  // cards.appendChild(gitData);
+  // console.log(data)
+  // data.forEach(element => {
+  // let myFunc = MyFunction(element);
+  // cards.appendChild(myFunc)  
+}
+)
+
+console.log(cards)
 
 // console.log(axios.get('https://api.github.com/users/ron-hughes'))
