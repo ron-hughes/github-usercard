@@ -53,3 +53,61 @@ const followersArray = [];
   luishrd
   bigknell
 */
+
+
+function MyFunction(data) {
+  // adding elements to DOM
+  const cardDiv = document.createElement('div')
+    cardDiv.classList.add('card')
+
+  const image = document.createElement('img')
+    
+  const cardInfoDiv = document.createElement('div')
+    cardInfoDiv.classList.add('card-info')
+    
+  const name = document.createElement('h3')
+    name.classList.add('name')
+
+  const userName = document.createElement('p')
+    userName.classList.add('username')
+
+  const location = document.createElement('p')
+  const profile = document.createElement('p')
+  const followers = document.createElement('p')
+  const following = document.createElement('p')
+  const bio = document.createElement('p')
+  
+  // params
+
+  image.src = data.avatar_url
+  name.textContent = data.name
+
+
+  
+
+  cardDiv.appendChild(image)
+  cardDiv.appendChild(cardInfoDiv)
+  cardInfoDiv.appendChild(name)
+  cardInfoDiv.appendChild(userName)
+  cardInfoDiv.appendChild(location)
+  cardInfoDiv.appendChild(profile)
+  cardInfoDiv.appendChild(followers)
+  cardInfoDiv.appendChild(following)
+  cardInfoDiv.appendChild(bio)
+}
+
+let cards = document.querySelector('.cards')
+
+// console.log(axios.get('https://dog.ceo/api/breed/husky/images/random/12'))
+
+axios.get('https://api.github.com/users/ron-hughes')
+// .then((response) => {
+//   let data = response.data;
+//   console.log(data)
+//   data.forEach(element => {
+//   let myFunc = MyFunction(element);
+//   cards.appendChild(myFunc)  
+//   });
+// }
+
+// console.log(axios.get('https://api.github.com/users/ron-hughes'))
