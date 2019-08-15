@@ -73,6 +73,8 @@ function MyFunction(data) {
 
   const location = document.createElement('p')
   const profile = document.createElement('p')
+  const link = document.createElement('a')
+    
   const followers = document.createElement('p')
   const following = document.createElement('p')
   const bio = document.createElement('p')
@@ -81,9 +83,15 @@ function MyFunction(data) {
 
   image.src = data.avatar_url
   name.textContent = data.name
+  userName.textContent = data.login
+  location.textContent = `Location: ${data.location}`
+  profile.textContent = `Profile: ${data.html_url}`
+  link.href =  data.html_url
+  followers.textContent = `Followers: ${data.followers} `
+  following.textContent = `Following: ${data.following}`
+  bio.textContent = `Bio: ${data.bio}`
 
-
-  
+  // dom appends
 
   cardDiv.appendChild(image)
   cardDiv.appendChild(cardInfoDiv)
@@ -91,9 +99,12 @@ function MyFunction(data) {
   cardInfoDiv.appendChild(userName)
   cardInfoDiv.appendChild(location)
   cardInfoDiv.appendChild(profile)
+  profile.appendChild(link)
   cardInfoDiv.appendChild(followers)
   cardInfoDiv.appendChild(following)
   cardInfoDiv.appendChild(bio)
+
+  return cardDiv;
 }
 
 let cards = document.querySelector('.cards')
@@ -103,8 +114,10 @@ let cards = document.querySelector('.cards')
 axios.get('https://api.github.com/users/ron-hughes')
 .then((response) => {
   let data = response.data;
-  Object.values(data).forEach(e => {
-    // console.log(e)
+  console.log(data.avatar_url)
+  Object.keys(data).forEach(e => {
+    // let gitData = MyFunction(e)
+    // cards.appendChild(gitData)
   })
   // let gitData = MyFunction(data);
   // cards.appendChild(gitData);
@@ -115,6 +128,6 @@ axios.get('https://api.github.com/users/ron-hughes')
 }
 )
 
-console.log(cards)
+// console.log(MyFunction())
 
 // console.log(axios.get('https://api.github.com/users/ron-hughes'))
