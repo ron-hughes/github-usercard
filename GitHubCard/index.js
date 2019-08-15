@@ -133,3 +133,12 @@ axios.get('https://api.github.com/users/ron-hughes')
 // console.log(MyFunction())
 
 // console.log(axios.get('https://api.github.com/users/ron-hughes'))
+followersArray.forEach(name => {
+  axios.get(`https://api.github.com/users/${name}`)
+  .then((response) => {
+    let followers = response.data
+    let followerData = MyFunction(followers)
+    cards.appendChild(followerData)
+    // console.log(followerData)
+  })
+})
