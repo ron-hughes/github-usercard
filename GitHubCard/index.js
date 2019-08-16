@@ -15,7 +15,7 @@
 */
 
 /* Step 5: Now that you have your own card getting added to the DOM, either 
-          follow this link in your browser https://api.github.com/users/<Your github name>/followers 
+          follow this link in your browser https://api.github.com/users/ron-hughes/followers 
           , manually find some other users' github handles, or use the list found 
           at the bottom of the page. Get at least 5 different Github usernames and add them as
           Individual strings to the friendsArray below.
@@ -24,7 +24,7 @@
           user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+const followersArray = ['lesleyfon', 'DarionSuggs', 'LeonChisum', 'McKenzieGary', 'amolsingh74'];
 
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
@@ -53,3 +53,102 @@ const followersArray = [];
   luishrd
   bigknell
 */
+
+
+function MyFunction(data) {
+  // adding elements to DOM
+  const cardDiv = document.createElement('div')
+  cardDiv.classList.add('card')
+
+  const image = document.createElement('img')
+
+  const cardInfoDiv = document.createElement('div')
+  cardInfoDiv.classList.add('card-info')
+
+  const name = document.createElement('h3')
+  name.classList.add('name')
+
+  const userName = document.createElement('p')
+  userName.classList.add('username')
+
+  const location = document.createElement('p')
+  const profile = document.createElement('p')
+  const link = document.createElement('a')
+
+  const followers = document.createElement('p')
+  const following = document.createElement('p')
+  const bio = document.createElement('p')
+
+  // params
+
+  image.src = data.avatar_url
+  name.textContent = data.name
+  userName.textContent = data.login
+  location.textContent = `Location: ${data.location}`
+  profile.textContent = `Profile: ${data.html_url}`
+  link.href = data.html_url
+  followers.textContent = `Followers: ${data.followers} `
+  following.textContent = `Following: ${data.following}`
+  bio.textContent = `Bio: ${data.bio}`
+
+  // dom appends
+
+  cardDiv.appendChild(image)
+  cardDiv.appendChild(cardInfoDiv)
+  cardInfoDiv.appendChild(name)
+  cardInfoDiv.appendChild(userName)
+  cardInfoDiv.appendChild(location)
+  cardInfoDiv.appendChild(profile)
+  profile.appendChild(link)
+  cardInfoDiv.appendChild(followers)
+  cardInfoDiv.appendChild(following)
+  cardInfoDiv.appendChild(bio)
+
+  return cardDiv;
+}
+
+let cards = document.querySelector('.cards')
+
+// console.log(axios.get('https://dog.ceo/api/breed/husky/images/random/12'))
+
+// axios.get('https://api.github.com/users/ron-hughes')
+//   .then((response) => {
+//     let data = response.data;
+//     let gitData = MyFunction(data)
+//     cards.appendChild(gitData)
+//     console.log(data)
+//     // Object.keys(data).forEach(e => {
+//     // let gitData = MyFunction(e)
+//     // cards.appendChild(gitData)
+//     // })
+//     // let gitData = MyFunction(data);
+//     // cards.appendChild(gitData);
+//     // console.log(data)
+//     // data.forEach(element => {
+//     // let myFunc = MyFunction(element);
+//     // cards.appendChild(myFunc)  
+//   }
+//   )
+
+// console.log(MyFunction())
+
+// console.log(axios.get('https://api.github.com/users/ron-hughes'))
+// followersArray.forEach(name => {
+//   axios.get(`https://api.github.com/users/${name}`)
+//   .then((response) => {
+//     let followers = response.data
+//     let followerData = MyFunction(followers)
+//     cards.appendChild(followerData)
+//     // console.log(followerData)
+//   })
+// })
+
+axios.get('https://api.github.com/users/ron-hughes/followers')
+  .then((response) => {
+    let data = response.data
+    data.forEach(element => {
+      let followers = MyFunction(element)
+      cards.appendChild(followers)
+      console.log(element)
+    });
+  })
