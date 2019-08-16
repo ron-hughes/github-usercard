@@ -111,34 +111,44 @@ let cards = document.querySelector('.cards')
 
 // console.log(axios.get('https://dog.ceo/api/breed/husky/images/random/12'))
 
-axios.get('https://api.github.com/users/ron-hughes')
-  .then((response) => {
-    let data = response.data;
-    let gitData = MyFunction(data)
-    cards.appendChild(gitData)
-    // console.log(data)
-    // Object.keys(data).forEach(e => {
-    // let gitData = MyFunction(e)
-    // cards.appendChild(gitData)
-    // })
-    // let gitData = MyFunction(data);
-    // cards.appendChild(gitData);
-    // console.log(data)
-    // data.forEach(element => {
-    // let myFunc = MyFunction(element);
-    // cards.appendChild(myFunc)  
-  }
-  )
+// axios.get('https://api.github.com/users/ron-hughes')
+//   .then((response) => {
+//     let data = response.data;
+//     let gitData = MyFunction(data)
+//     cards.appendChild(gitData)
+//     console.log(data)
+//     // Object.keys(data).forEach(e => {
+//     // let gitData = MyFunction(e)
+//     // cards.appendChild(gitData)
+//     // })
+//     // let gitData = MyFunction(data);
+//     // cards.appendChild(gitData);
+//     // console.log(data)
+//     // data.forEach(element => {
+//     // let myFunc = MyFunction(element);
+//     // cards.appendChild(myFunc)  
+//   }
+//   )
 
 // console.log(MyFunction())
 
 // console.log(axios.get('https://api.github.com/users/ron-hughes'))
-followersArray.forEach(name => {
-  axios.get(`https://api.github.com/users/${name}`)
+// followersArray.forEach(name => {
+//   axios.get(`https://api.github.com/users/${name}`)
+//   .then((response) => {
+//     let followers = response.data
+//     let followerData = MyFunction(followers)
+//     cards.appendChild(followerData)
+//     // console.log(followerData)
+//   })
+// })
+
+axios.get('https://api.github.com/users/ron-hughes/followers')
   .then((response) => {
-    let followers = response.data
-    let followerData = MyFunction(followers)
-    cards.appendChild(followerData)
-    // console.log(followerData)
+    let data = response.data
+    data.forEach(element => {
+      let followers = MyFunction(element)
+      cards.appendChild(followers)
+      console.log(element)
+    });
   })
-})
